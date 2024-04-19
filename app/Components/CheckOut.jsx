@@ -3,28 +3,27 @@ import { useEffect } from "react";
 
 const Checkout = ({ data }) => {
   useEffect(() => {
-    // Load the Razorpay script
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
     document.body.appendChild(script);
 
-    // Initialize Razorpay
     script.onload = () => {
       const options = {
-        key: "rzp_test_JrRiSY1nXRJNcx",
-        amount: data.amount * 100, // Convert amount to paise
+        key: process.env.RAZORPAY_KEY_ID,
+        amount: data?.amount * 100,
         currency: "INR",
-        name: "Ritesh Kumar",
+        name: "Demo App",
         description: "Test Transaction",
-        // image: "/pay.png",
+        image: "/donate.png",
         handler: function (response) {
           alert("Payment Successful");
+          window.location.reload();
         },
         prefill: {
-          name: data.name,
-          email: data.email,
-          contact: data.phone,
+          name: data?.name,
+          email: data?.email,
+          contact: data?.phone,
         },
         theme: {
           color: "#3e9c35",

@@ -99,6 +99,7 @@ const Pay = () => {
             <input
               type="number"
               id="amount"
+              min={1}
               {...register("amount", {
                 required: "Donation amount is required",
               })}
