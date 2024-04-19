@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   FaMoneyBillAlt,
@@ -7,8 +7,10 @@ import {
   FaEnvelope,
   FaPhoneAlt,
 } from "react-icons/fa";
+import Checkout from "./CheckOut";
 
 const Pay = () => {
+  const [checkoutData, setCheckoutData] = useState(null);
   const {
     register,
     handleSubmit,
@@ -17,7 +19,7 @@ const Pay = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    // You can add your logic to handle the form submission here
+    setCheckoutData(data);
   };
 
   return (
@@ -115,6 +117,7 @@ const Pay = () => {
           </button>
         </form>
       </div>
+      {checkoutData && <Checkout data={checkoutData} />}
     </div>
   );
 };
